@@ -75,26 +75,27 @@ poetry run python /src/application.py
 
 
 ## Project Structure
-* application.py: Main entry point for running the bot.
-* dispatcher.py: Configures and starts the aiogram dispatcher.
-### bot
-* filters.py: Custom filters for message handling.
-* handlers.py: Handlers for processing different types of messages.
-### bot/core
-* logger.py: Configures logging for the application.
-* settings.py: Contains configuration settings, including the bot token.
-### bot/database
-* crud.py: Contains CRUD operations for interacting with the database.
-* database.py: Database setup and session management.
-* models.py: SQLAlchemy models for the database schema.
-### bot/migrations
+### [src](src)
+* [application.py](src/application.py): Main entry point for running the bot.
+* [dispatcher.py](src/dispatcher.py): Configures and starts the aiogram dispatcher.
+### [src/bot](src/bot)
+* [filters.py](src/bot/filters.py): Custom filters for message handling.
+* [handlers.py](src/bot/handlers.py): Handlers for processing different types of messages.
+### [src/bot/core](src/bot/core)
+* [logger.py](src/bot/core/logger.py): Configures logging for the application.
+* [settings.py](src/bot/core/settings.py): Contains configuration settings, including the bot token.
+### [src/bot/database](src/bot/database)
+* [crud.py](src/bot/database/crud.py): Contains CRUD operations for interacting with the database.
+* [database.py](src/bot/database/database.py): Database setup and session management.
+* [models.py](src/bot/database/models.py): SQLAlchemy models for the database schema.
+### [src/bot/database/migrations](src/bot/database/migrations)
 * env.py: Alembic environment configuration file.
 * script.py.mako: Template for new migration scripts.
 * versions: Directory containing migration scripts.
 
 
-## [License](LICENSE)
-This project is licensed under the MIT License. See the LICENSE file for details.
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contributors
 For anyone who is interested in contributing to MessageGuardianBot, please make sure you fork the project and make a pull request.
