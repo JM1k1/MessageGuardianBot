@@ -38,27 +38,6 @@ class CRUDBase:
         await session.refresh(instance)
         return instance
 
-# class CRUDMessageData(CRUDBase):
-#     """CRUD operations for MessageData objects."""
-
-#     async def get_message_by_id(
-#         self, message_id: int, session: AsyncSession
-#     ):
-#         db_obj = await session.execute(
-#             select(self.model).where(self.model.id == message_id)
-#         )
-#         return db_obj.scalars().first()
-
-#     async def update_message_data_attrib(
-#         self, object: MessageModel, message: Message, session: AsyncSession
-#     ):
-#         object.text = getattr(message, "text", None)
-#         object.sticker = getattr(message.sticker, "emoji", None)
-#         object.timestamp = message.date
-#         session.add(object)
-#         await session.commit()
-#         await session.refresh(object)
-#         await session.close()
 
 
 class UserManager(CRUDBase):

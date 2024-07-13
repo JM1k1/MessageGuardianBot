@@ -52,4 +52,4 @@ async def group_edited_message_handler(message: Message):
         msg = await message_manager.get(message.message_id, session)
         await session.refresh(msg, attribute_names=["contents"])
         print(message.from_user.full_name + " \n" +
-              "\n|-> ".join(f"{content.text} [{content.timestamp.astimezone(LOCAL_TIMEZONE).strftime(format)}]" for content in msg.contents))
+              "\n|-> ".join(f"{content.text} [{content.timestamp.astimezone(LOCAL_TIMEZONE).strftime(DATETIME_FORMAT)}]" for content in msg.contents))
