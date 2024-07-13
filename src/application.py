@@ -1,5 +1,3 @@
-
-
 from client import client
 
 from telethon import events
