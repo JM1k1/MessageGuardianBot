@@ -2,8 +2,8 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    telegram_token: str = ""
-    forward_chat_id: int = ""
+    telegram_token: str
+    forward_chat_id: int
 
     database_engine: str
 
