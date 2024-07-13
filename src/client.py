@@ -1,5 +1,7 @@
 from telethon import TelegramClient
+
 from bot.core.settings import settings
+
 
 client = TelegramClient(
     'MessageGuardian',
