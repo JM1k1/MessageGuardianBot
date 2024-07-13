@@ -62,7 +62,7 @@ poetry install
 
 ```
 TELEGRAM_TOKEN=YOUR_TOKEN
-FORWARD_CHAT_ID=YOUR_CHAT_ID
+FORWARD_CHAT_ID=YOUR_FORWARD_CHAT_ID
 DATABASE_ENGINE=sqlite+aiosqlite:///database.db
 ```
 
