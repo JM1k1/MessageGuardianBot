@@ -64,7 +64,7 @@ async def group_delited_message_handler(event):
             ]
 
             text = (
-                f"**[{message.user.full_name}](@{message.user.username})** "
+                f"**[{message.user.full_name}](@{message.user.username})**"
                 f"** ⟵ Удалил cообщение в чате "
                 f"__{message.chat.title}__:**\n\n" +
                 "\n".join(
