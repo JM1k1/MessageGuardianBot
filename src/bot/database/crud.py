@@ -39,7 +39,6 @@ class CRUDBase:
         return instance
 
 
-
 class UserManager(CRUDBase):
     """A class to manage users in a database."""
 
