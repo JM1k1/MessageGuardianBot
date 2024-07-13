@@ -89,9 +89,9 @@ poetry run python /src/application.py
 * [database.py](src/bot/database/database.py): Database setup and session management.
 * [models.py](src/bot/database/models.py): SQLAlchemy models for the database schema.
 ### [src/bot/database/migrations](src/bot/database/migrations)
-* env.py: Alembic environment configuration file.
-* script.py.mako: Template for new migration scripts.
-* versions: Directory containing migration scripts.
+* [env.py](src/bot/database/migrations/env.py): Alembic environment configuration file.
+* [script.py.mako](src/bot/database/migrations/script.py.mako): Template for new migration scripts.
+* [versions](src/bot/database/migrations/versions): Directory containing migration scripts.
 
 
 ## License
