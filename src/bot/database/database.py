@@ -40,8 +40,3 @@ async def async_session():
         raise
     finally:
         await session.close()
-
-
-async def create_table():
-    async with engine.begin() as connection:
-        await connection.run_sync(Base.metadata.create_all)
