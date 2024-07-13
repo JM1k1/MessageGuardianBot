@@ -137,3 +137,6 @@ dmypy.json
 # IDE confs
 .vscode
 .idea
+
+# Session
+*.session*
