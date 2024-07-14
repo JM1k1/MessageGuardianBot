@@ -20,6 +20,7 @@ The bot is built using the Telethon framework for handling Telegram updates and 
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 - [License](#license)
+- [Contributors](#contributors)
 
 ## Installation
 
