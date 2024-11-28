@@ -18,4 +18,3 @@ client.add_event_handler(group_delited_message_handler, events.MessageDeleted)
 if __name__ == "__main__":
     client.start(bot_token=settings.telegram_token)
     client.run_until_disconnected()
-    # test
