@@ -6,13 +6,13 @@
 <p align='center'>
   <img src="https://img.shields.io/badge/Python-0A0A0A?style=for-the-badge&logo=Python&logoColor=white"/>
   <img src="https://img.shields.io/badge/SQLAlchemy-0A0A0A?style=for-the-badge&logo=SQLAlchemy&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Aiogram-0A0A0A?style=for-the-badge&logo=telegram&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Telethon-0A0A0A?style=for-the-badge&logo=telegram&logoColor=white"/>
 </p>
 
 ---
 
 Message Guardian Bot is a Telegram bot designed to manage messages in groups, including saving messages, tracking changes, and restoring deleted messages.
-The bot is built using the aiogram framework for handling Telegram updates and SQLAlchemy for database interactions.
+The bot is built using the Telethon framework for handling Telegram updates and SQLAlchemy for database interactions.
 
 ## Table of Contents
 
@@ -20,6 +20,7 @@ The bot is built using the aiogram framework for handling Telegram updates and S
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 - [License](#license)
+- [Contributors](#contributors)
 
 ## Installation
 
@@ -83,12 +84,12 @@ poetry run python /src/application.py
 ### [src](src)
 
 - [application.py](src/application.py): Main entry point for running the bot.
-- [dispatcher.py](src/dispatcher.py): Configures and starts the aiogram dispatcher.
+- [client.py](src/dispatcher.py): Configures and starts the Telethon client.
 
 ### [src/bot](src/bot)
 
-- [filters.py](src/bot/filters.py): Custom filters for message handling.
 - [handlers.py](src/bot/handlers.py): Handlers for processing different types of messages.
+- [logs/](src/bot/logs): Directory containing logs.
 
 ### [src/bot/core](src/bot/core)
 
@@ -105,7 +106,7 @@ poetry run python /src/application.py
 
 - [env.py](src/bot/database/migrations/env.py): Alembic environment configuration file.
 - [script.py.mako](src/bot/database/migrations/script.py.mako): Template for new migration scripts.
-- [versions](src/bot/database/migrations/versions): Directory containing migration scripts.
+- [versions/](src/bot/database/migrations/versions): Directory containing migration scripts.
 
 ## License
 

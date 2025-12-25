@@ -1,10 +1,12 @@
-from datetime import datetime
-
-from aiogram.types import Message, User
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from bot.database.models import ContentModel, MessageModel, UserModel
+from bot.database.models import (
+    ChatModel,
+    ContentModel,
+    MessageModel,
+    UserModel,
+)
 
 
 class CRUDBase:
@@ -44,13 +46,34 @@ class UserManager(CRUDBase):
 
     async def add_user(
         self,
-        user_data: User,
+        user_data,
         session: AsyncSession
     ) -> UserModel:
         data = {
             "id": user_data.id,
             "username": user_data.username,
-            "full_name": user_data.full_name
+            "full_name": (
+                user_data.first_name + (
+                    " " + user_data.last_name
+                    if user_data.last_name is not None
+                    else ""
+                )
+            )
+        }
+        return await self.get_or_create(data, session)
+
+
+class ChatManager(CRUDBase):
+    """A class to manage users in a database."""
+
+    async def add_chat(
+        self,
+        chat_data,
+        session: AsyncSession
+    ) -> UserModel:
+        data = {
+            "id": chat_data.id,
+            "title": chat_data.title
         }
         return await self.get_or_create(data, session)
 
@@ -60,13 +83,14 @@ class MessageManager(CRUDBase):
 
     async def add_message(
         self,
-        message_data: Message,
+        message_data,
         session: AsyncSession
     ) -> MessageModel:
         data = {
-            "id": message_data.message_id,
+            "id": message_data.id,
             "timestamp": message_data.date,
-            "user_id": message_data.from_user.id,
+            "chat_id": abs(message_data.chat_id),
+            "user_id": message_data.from_id.user_id,
         }
         return await self.get_or_create(data, session)
 
@@ -76,16 +100,16 @@ class ContentManager(CRUDBase):
 
     async def add_content(
         self,
-        message_data: Message,
+        message_data,
         session: AsyncSession
     ) -> MessageModel:
-        date = message_data.date
-        if message_data.edit_date:
-            date = datetime.utcfromtimestamp(message_data.edit_date)
-
         data = {
-            "timestamp": date,
-            "message_id": message_data.message_id,
+            "timestamp": (
+                message_data.edit_date
+                if message_data.edit_date is not None
+                else message_data.date
+            ),
+            "message_id": message_data.id,
             "text": message_data.text
         }
         instance = self.model(**data)
@@ -96,5 +120,6 @@ class ContentManager(CRUDBase):
 
 
 user_manager = UserManager(UserModel)
+chat_manager = ChatManager(ChatModel)
 message_manager = MessageManager(MessageModel)
 content_manager = ContentManager(ContentModel)

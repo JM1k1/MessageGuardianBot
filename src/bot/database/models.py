@@ -1,4 +1,12 @@
-from sqlalchemy import BigInteger, Column, DateTime, ForeignKey, Integer, Text
+from sqlalchemy import (
+    BigInteger,
+    Boolean,
+    Column,
+    DateTime,
+    ForeignKey,
+    Integer,
+    Text,
+)
 from sqlalchemy.orm import relationship
 
 from bot.database.database import Base
@@ -16,11 +24,24 @@ class UserModel(Base):
         return f"<User(id={self.id}, username={self.username})>"
 
 
+class ChatModel(Base):
+    __tablename__ = 'chats'
+
+    id = Column(BigInteger, primary_key=True)
+    title = Column(Integer, nullable=False)
+    messages = relationship('MessageModel', back_populates='chat')
+
+    def __repr__(self):
+        return f"<Chat(id={self.id}, title={self.title})>"
+
+
 class MessageModel(Base):
     __tablename__ = 'messages'
 
     id = Column(BigInteger, primary_key=True)
     timestamp = Column(DateTime)
+    chat_id = Column(BigInteger, ForeignKey('chats.id'), nullable=False)
+    chat = relationship('ChatModel', back_populates='messages')
     user_id = Column(BigInteger, ForeignKey('users.id'), nullable=False)
     user = relationship('UserModel', back_populates='messages')
     contents = relationship(
@@ -28,6 +49,7 @@ class MessageModel(Base):
         back_populates='message',
         cascade='all, delete-orphan'
     )
+    deleted = Column(Boolean, default=False)
 
     def __repr__(self):
         return f"<Message(id={self.id}, user_id={self.user_id})>"
